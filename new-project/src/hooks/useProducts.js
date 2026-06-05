@@ -1,26 +1,26 @@
-import { useState, useEffect } from 'react';
-import { getProducts } from "../api/productApi";
+import { useState, useEffect } from 'react'
+import { getProducts } from '../api/productApi'
 
 export function useProducts() {
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
+    const [products, setProducts] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState('')
 
     useEffect(() => {
         async function load() {
             try {
-                setLoading(true);
-                const data = await getProducts();
-                setProducts(data);
+                setLoading(true)
+                const data = await getProducts()
+                setProducts(data)
             } catch (err) {
-                setError(err.message);
+                setError(err.message)
             } finally {
-                setLoading(false);
+                setLoading(false)
             }
         }
 
-        load();
-    }, []);
+        load()
+    }, [])
 
-    return { products, loading, error };
+    return { products, loading, error }
 }
