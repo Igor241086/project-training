@@ -1,14 +1,15 @@
-import { Grid } from '@mui/material'
-import { ProductCard } from './ProductCard'
+import ProductCard from './ProductCard';
 
-export function ProductList({ products }) {
-    return (
-        <Grid container spacing={3}>
-            {products.map((product) => (
-                <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
-                    <ProductCard product={product} />
-                </Grid>
-            ))}
-        </Grid>
-    )
-}
+const ProductList = ({ products, onDelete }) => {
+  if (!products.length) return <p>Товары не найдены.</p>;
+
+  return (
+    <div className="product-grid">
+      {products.map(product => (
+        <ProductCard key={product.id} product={product} onDelete={onDelete} />
+      ))}
+    </div>
+  );
+};
+
+export default ProductList;

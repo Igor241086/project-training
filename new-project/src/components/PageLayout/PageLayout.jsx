@@ -6,7 +6,14 @@ export default function PageLayout({ children }) {
     return (
         <>
             <Header />
-            <Container sx={{ py: 4 }}>{children}</Container>
+            <Container 
+                style={{
+                    maxWidth: '1200px',
+                    margin: '0 auto',
+                    padding: '20px',
+            }}>
+                {children}
+            </Container>
             <Footer />
         </>
     )

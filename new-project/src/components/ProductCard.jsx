@@ -1,29 +1,26 @@
-import {
-    Card,
-    CardMedia,
-    CardContent,
-    Typography,
-    CardActions,
-    Button,
-} from '@mui/material'
+import Button from './UI/Button/Button';
 
-export function ProductCard({ product }) {
-    return (
-        <Card>
-            <CardMedia
-                component="img"
-                height="200"
-                image={product.image}
-                alt={product.title}
-            />
-            <CardContent>
-                <Typography variant="h6">{product.title}</Typography>
-                <Typography color="text.secondary">${product.price}</Typography>
-            </CardContent>
-            <CardActions>
-                <Button size="small">View</Button>
-                <Button size="small">Edit</Button>
-            </CardActions>
-        </Card>
-    )
-}
+const ProductCard = ({ product, onDelete }) => {
+  return (
+    <div className="product-card">
+      <img src={product.image || 'https://via.placeholder.com/250x180?text=No+Image'} alt={product.title} />
+      <h3>{product.title}</h3>
+      <p className="price">{product.price} грн</p>
+      <div className="card-actions">
+        <Button to={`/products/${product.id}`}>Подробнее</Button>
+        {onDelete && (
+          <>
+            <Button to={`/products/${product.id}/edit`} variant="outlined">
+              Редактировать
+            </Button>
+            <Button onClick={() => onDelete(product.id)} color="error" className="btn-danger">
+              Удалить
+            </Button>
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default ProductCard;

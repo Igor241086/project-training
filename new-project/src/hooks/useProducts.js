@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { getProducts } from '../api/productApi'
+import { productsApi } from '../api/productApi'
 
 export function useProducts() {
     const [products, setProducts] = useState([])
@@ -10,7 +10,7 @@ export function useProducts() {
         async function load() {
             try {
                 setLoading(true)
-                const data = await getProducts()
+                const data = await productsApi.getAll()
                 setProducts(data)
             } catch (err) {
                 setError(err.message)
